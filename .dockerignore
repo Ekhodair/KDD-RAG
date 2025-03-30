@@ -1,0 +1,7 @@
+**/venv
+**/.venv
+**/.git
+**/.DS_Store
+**/.pytest_cache
+**/.idea
+**/__pycache__
