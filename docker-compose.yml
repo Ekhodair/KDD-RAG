@@ -1,0 +1,58 @@
+version: '3'
+services:
+  elasticsearch:
+    image: bitnami/elasticsearch:latest
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - opendistro_security.disabled=true
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/bitnami/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - elastic-net
+
+  kibana:
+    image: bitnami/kibana:latest
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - opendistro_security.disabled=true
+    ports:
+      - "5601:5601"
+    networks:
+      - elastic-net
+    depends_on:
+      - elasticsearch
+      
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    environment:
+      - NEO4J_AUTH=neo4j/password
+      - NEO4J_PLUGINS=["apoc"]
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4jdata:/data
+    networks:
+      - elastic-net
+
+networks:
+  elastic-net:
+    driver: bridge
+
+volumes:
+  esdata:
+    driver: local
+  neo4jdata:
+    driver: local
