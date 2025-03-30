@@ -6,7 +6,7 @@ import sys
 from datetime import datetime
 
 # Configuration
-API_URL = "http://localhost:8081/chat"
+API_URL = "http://localhost:8001/chat"
 rag_type = "fusion"  # Can be: "fusion", "graph", "adaptive"
 
 
