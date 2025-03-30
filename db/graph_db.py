@@ -167,7 +167,7 @@ class GraphDatabaseManager:
             df = pd.read_csv(path)
             graph_data = []
             
-            for _, row in tqdm(df.head(3).iterrows(), total=len(df.head(3)), desc="Processing rows"):
+            for _, row in tqdm(df.iterrows(), total=len(df), desc="Processing rows"):
                 text = " ".join([str(value) for value in row.values if pd.notna(value)])            
                 messages = [
                     {'role': 'system', 'content': GRAPH_SYSTEM_PROMPT},
