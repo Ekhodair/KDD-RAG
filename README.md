@@ -106,14 +106,14 @@ $ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tenso
 Index the scraped data in the unstructured database:
 
 ```bash
-$ python db/unstructured_db.py
+$ python db/unstructured_db.py --data-dir <dir containing scraped data>
 ```
 
 ### 6. Index Data in Graph Database
 
 **To use pre-extracted graph data (faster):**
 
-    $ python db/graph_db.py --data-dir "./graph_data" --graph-ready
+    $ python db/graph_db.py --data-dir ./graph_data --graph-ready
 
 **To extract nodes/relationships and index graph data from scratch:**
 
