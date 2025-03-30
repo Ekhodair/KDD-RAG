@@ -174,7 +174,7 @@ class GraphDatabaseManager:
                     {'role': 'user', 'content': GRAPH_PROMPT.format(examples=json.dumps(examples), input=text)}
                 ]
                 try:
-                    output = call_model(messages, max_tokens=1000)
+                    output = call_model(messages, max_tokens=2000)
                     # Parse model response
                     parsed = self.parse_model_response(output)                     
                     graph_data.append({
