@@ -95,7 +95,7 @@ $ python scrape.py --output-dir ./scraped_data
 
 ### 4. Run LLM
 
-Start AWQ quantized version of Llama3 70B model using vLLM for efficient inference:
+Start AWQ 4 bit quantized version of Llama3.3 70B model using vLLM for efficient inference:
 
 ```bash
 $ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tensor-parallel-size 2 --gpu_memory_utilization 0.9 --max-model-len 80000
