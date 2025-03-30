@@ -93,7 +93,15 @@ To scrape data from sources, specify an output directory to save the scraped dat
 $ python scrape.py --output-dir ./scraped_data
 ```
 
-### 4. Index Data in Unstructured Database
+### 4. Run LLM
+
+Start AWQ quantized version of Llama3 70B model using vLLM for efficient inference:
+
+```bash
+$ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tensor-parallel-size 2 --gpu_memory_utilization 0.9 --max-model-len 80000
+```
+
+### 5. Index Data in Unstructured Database
 
 Index the scraped data in the unstructured database:
 
@@ -101,18 +109,18 @@ Index the scraped data in the unstructured database:
 $ python db/unstructured_db.py
 ```
 
-### 5. Index Data in Graph Database
+### 6. Index Data in Graph Database
 
 **To use pre-extracted graph data (faster):**
 
     $ python db/graph_db.py --data-dir "./graph_data" --graph-ready
 
-**To extract and index graph data from scratch:**
+**To extract nodes/relationships and index graph data from scratch:**
 
     $ python db/graph_db.py --data-dir <scraped-files-dir>
 
 
-### 6. Run the API Server
+### 7. Run the API Server
 
 Start the RESTful API with the `/chat` endpoint:
 
@@ -120,7 +128,7 @@ Start the RESTful API with the `/chat` endpoint:
 $ uvicorn api:app --host 0.0.0.0 --port 8001
 ```
 
-### 7. Evaluate the System
+### 8. Evaluate the System
 
 Run evaluation across all RAG types using the provided prompts:
 
