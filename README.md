@@ -73,8 +73,7 @@ Elasticsearch: Vector/text database (http://localhost:9200)
 
 Kibana: Elasticsearch dashboard and monitoring (http://localhost:5601)
 
-Neo4j: Graph database
-Browser interface: bolt://localhost:7687
+Neo4j: bolt://localhost:7687
 
 
 ```bash
@@ -95,7 +94,7 @@ $ python scrape.py --output-dir ./scraped_data
 
 ### 4. Run LLM
 
-Start AWQ 4 bit quantized version of Llama3.3 70B model using vLLM for efficient inference:
+Run AWQ 4 bit quantized version of Llama3.3 70B model using vLLM for efficient inference:
 
 ```bash
 $ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tensor-parallel-size 2 --gpu_memory_utilization 0.9 --max-model-len 80000
@@ -103,7 +102,7 @@ $ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tenso
 
 ### 5. Index Data in Unstructured Database
 
-Index the scraped data in the unstructured database:
+Index the scraped data in ES database:
 
 ```bash
 $ python db/unstructured_db.py --data-dir <dir containing scraped data>
@@ -145,7 +144,7 @@ Evaluation metrics include:
 
  ### Inference
   
-To start an interactive chat with the /chat endpoint please run
+To start an interactive chat with the /chat endpoint, please run
 ```bash
 $ python interactive_chat.py
 ```
