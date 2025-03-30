@@ -1,7 +1,9 @@
-from typing import Dict, List
 import sys
+from typing import Dict, List
+
 from core.base_rag import BaseRAG
 from db.unstructured_db import ElasticsearchRetrievalManager
+
 sys.path.append("helpers")
 from logger import create_logger
 from utils import call_model
