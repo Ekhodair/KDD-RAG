@@ -73,7 +73,7 @@ Elasticsearch: Vector/text database (http://localhost:9200)
 
 Kibana: Elasticsearch dashboard and monitoring (http://localhost:5601)
 
-Neo4j: bolt://localhost:7687
+Neo4j: graph DB (bolt://localhost:7687)
 
 
 ```bash
@@ -97,7 +97,7 @@ $ python scrape.py --output-dir ./scraped_data
 Run AWQ 4 bit quantized version of Llama3.3 70B model using vLLM for efficient inference:
 
 ```bash
-$ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tensor-parallel-size 2 --gpu_memory_utilization 0.9 --max-model-len 80000
+$ vllm serve casperhansen/llama-3.3-70b-instruct-awq --trust-remote-code --tensor-parallel-size 2 --gpu_memory_utilization 0.7 --max-model-len 40000
 ```
 
 ### 5. Index Data in Unstructured Database
@@ -148,7 +148,7 @@ To start an interactive chat with the /chat endpoint, please run
 ```bash
 $ python interactive_chat.py
 ```
-
+You can change RAG type passed to the endpoint to experiment with each option.
    
 ## Input / Output
 
